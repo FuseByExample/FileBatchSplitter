@@ -16,56 +16,52 @@
 
 package com.fusesource.byexample.filebatchsplitter;
 
-import org.apache.camel.spi.BrowsableEndpoint;
+import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public final class CamelContextXmlTest extends CamelSpringTestSupport {
 
-	private static final String OUTBOX_DIR = "target/data/outbox";
-
 	private static final int EXPECTED_NUMBER_OF_LINE_ITEMS = 5;
 
-	private static final long MAX_WAIT_TIME_MILLIS = 10 * 1000;
+	private static final String OUTBOX_DIR = "target/data/outbox";
 
 	/**
-	 * This test relies on the batch file 'order1.xml' in the src/data/inbox dir which includes five line items.
-	 * The Camel route under test will create one file per line item in the target/data/outbox dir.
+	 * This test relies on the batch file 'order1.xml' in the src/data/inbox dir
+	 * which includes five line items. The Camel route under test should create
+	 * one file per line item in the target/data/outbox dir.
 	 */
 	@Test
 	public void testCamelRoute() throws Exception {
 
-		int numLineItemsReceived = 0;
+		// Mock the file endpoints
+		context.getRouteDefinitions().get(0).adviceWith(context, new AdviceWithRouteBuilder() {
+			@Override
+			public void configure() throws Exception {
 
-		long endTime = System.currentTimeMillis() + MAX_WAIT_TIME_MILLIS;
+				mockEndpoints("file*");
 
-		BrowsableEndpoint outbox = context.getEndpoint("file:" + OUTBOX_DIR, BrowsableEndpoint.class);
+			}
+		});
 
-		while (numLineItemsReceived < EXPECTED_NUMBER_OF_LINE_ITEMS && System.currentTimeMillis() < endTime) {
-			Thread.sleep(200);
-			numLineItemsReceived = outbox.getExchanges().size();
-		}
-
-		assertTrue("Test failed: received " + numLineItemsReceived + " line items, but expected " + EXPECTED_NUMBER_OF_LINE_ITEMS,
-				numLineItemsReceived == EXPECTED_NUMBER_OF_LINE_ITEMS);
+		// make sure we get the right number of line items
+		getMockEndpoint("mock:file:" + OUTBOX_DIR).expectedMessageCount(EXPECTED_NUMBER_OF_LINE_ITEMS);
+		
+		assertMockEndpointsSatisfied();
 	}
 
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		cleanOutbox();
-	}
-	
-	@Override
-	public void tearDown() throws Exception {
-		super.tearDown();
-		cleanOutbox();
-	}
-	
-	private void cleanOutbox(){
 		deleteDirectory(OUTBOX_DIR);
 		createDirectory(OUTBOX_DIR);
+	}
+
+	@Override
+	public void tearDown() throws Exception {
+		deleteDirectory(OUTBOX_DIR);
+		super.tearDown();
 	}
 
 	@Override

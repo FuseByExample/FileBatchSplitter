@@ -60,8 +60,8 @@ public final class CamelContextXmlTest extends CamelSpringTestSupport {
 
 	@Override
 	public void tearDown() throws Exception {
-		deleteDirectory(OUTBOX_DIR);
 		super.tearDown();
+		deleteDirectory(OUTBOX_DIR);
 	}
 
 	@Override

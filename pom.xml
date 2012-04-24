@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2011 FuseSource
+  ~ Copyright 2012 FuseSource
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
     <groupId>com.fusesource.byexample</groupId>
     <artifactId>FileBatchSplitter</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>File Batch Splitter</name>
 
@@ -33,10 +33,8 @@
     </organization>
 
     <properties>
-        <camel-version>2.6.0-fuse-00-00</camel-version>
-        <log4j-version>1.2.16</log4j-version>
-        <jaxb-api-version>2.1</jaxb-api-version>
-        <jaxb-impl-version>2.1.13</jaxb-impl-version>
+        <camel-version>2.8.0-fuse-02-05</camel-version>
+        <slf4j-version>1.6.2</slf4j-version>
     </properties>
 
     <repositories>
@@ -79,9 +77,16 @@
             <version>${camel-version}</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j-version}</version>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test</artifactId>
+            <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-version}</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -98,6 +103,12 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+            </plugin>            
 
             <!-- allows the route to be ran via 'mvn camel:run' -->
             <plugin>

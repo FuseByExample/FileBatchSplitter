@@ -22,7 +22,7 @@
 
     <groupId>com.fusesource.byexample</groupId>
     <artifactId>FileBatchSplitter</artifactId>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <version>1.0.1</version>
 
     <name>File Batch Splitter</name>
@@ -33,7 +33,7 @@
     </organization>
 
     <properties>
-        <camel-version>2.8.0-fuse-02-05</camel-version>
+        <camel-version>2.10.0.redhat-60020</camel-version>
         <slf4j-version>1.6.2</slf4j-version>
     </properties>
 
@@ -78,7 +78,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test</artifactId>
+            <artifactId>camel-test-spring</artifactId>
             <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>        
@@ -117,6 +117,14 @@
                 <version>${camel-version}</version>
             </plugin>
 
+
+            <!-- to generate the MANIFEST-FILE of the bundle -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.3.7</version>
+                <extensions>true</extensions>
+            </plugin>
         </plugins>
     </build>
 

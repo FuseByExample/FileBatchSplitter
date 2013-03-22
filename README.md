@@ -23,22 +23,22 @@ http://camel.apache.org/splitter.html
 # File batch Splitter with Fuse
 
 
-You can also run this bundle by installing it into Fuse ESB
+You can also run this bundle by installing it into JBoss Fuse
 
 To build the project and execute the unit test, execute the following command:
     $PROJECT_HOME> mvn clean install
 
-Start Fuse ESB, by running the included start script
+Start JBoss Fuse, by running the included start script
 
-    $FUSE_ESB_HOME> ./bin/fuseesb
+    $JBOSS_FUSE_HOME> ./bin/fuse
 
 Now You can install the bundle using the Fuse console
 
-    FuseESB:karaf@root> osgi:install mvn:com.fusesource.byexample/FileBatchSplitter/1.0.1
+    JBossFuse:karaf@root> osgi:install mvn:com.fusesource.byexample/FileBatchSplitter/1.0.1
 
 You can see that the bundle is installed by running the list command
 
-    FuseESB:karaf@root> list
+    JBossFuse:karaf@root> list
     ...
     [ 250] [Installed  ] [            ] [       ] [   60] File Batch Splitter (1.0.1)
     ...
@@ -46,19 +46,19 @@ You can see that the bundle is installed by running the list command
 In this case, 250 is the bundle id. This can be different on your instance of Fuse. You can start this bundle by
 executing `osgi:start (bundle-id)`.
 
-    FuseESB:karaf@root> osgi:start 250
-    FuseESB:karaf@root> list
+    JBossFuse:karaf@root> osgi:start 250
+    JBossFuse:karaf@root> list
     ...
     [ 250] [Active     ] [            ] [Started] [   60] File Batch Splitter (1.0.1)
     ...
 
-To activate this route, you have to copy the `order1.xml`file to the `$FUSE_ESB_HOME/src/data/inbox` folder. So you open
+To activate this route, you have to copy the `order1.xml`file to the `$JBOSS_FUSE_HOME/src/data/inbox` folder. So you open
 a new console...
 
-    $PROJECT_HOME> cp src/data/inbox/order1.xml $FUSE_ESB_HOME/src/data/inbox/
+    $PROJECT_HOME> cp src/data/inbox/order1.xml $JBOSS_FUSE_HOME/src/data/inbox/
 
 
-If we go to the `$FUSE_ESB_HOME/target/data/outbox` folder, you can see te resulting files.
+If we go to the `$JBOSS_FUSE_HOME/target/data/outbox` folder, you can see te resulting files.
 
     item1-2013032213582300693.xml
     item2-2013032213582300693.xml

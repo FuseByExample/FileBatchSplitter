@@ -33,7 +33,7 @@
     </organization>
 
     <properties>
-        <camel-version>2.10.0.fuse-71-047</camel-version>
+        <camel-version>2.10.0.redhat-60020</camel-version>
         <slf4j-version>1.6.2</slf4j-version>
     </properties>
 

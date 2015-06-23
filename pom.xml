@@ -33,7 +33,7 @@
     </organization>
 
     <properties>
-        <camel.version>2.15.1.redhat-620134</camel.version>
+        <camel.version>2.15.1.redhat-620133</camel.version>
         <felix.maven.bundle.plugin.version>2.5.3</felix.maven.bundle.plugin.version>
         <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
         <maven.compiler.source>1.7</maven.compiler.source>

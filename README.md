@@ -68,7 +68,7 @@ the `$JBOSS_FUSE_HOME/src/data/inbox` folder. So you open a new console...
 
     $PROJECT_HOME> cp src/data/inbox/order1.xml $JBOSS_FUSE_HOME/src/data/inbox/
 
-If we go to the `$JBOSS_FUSE_HOME/target/data/outbox` folder, you can see te resulting files.
+If we go to the `$JBOSS_FUSE_HOME/target/data/outbox` folder, you can see the resulting files.
 
     item1-2013032213582300693.xml
     item2-2013032213582300693.xml

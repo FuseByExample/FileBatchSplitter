@@ -28,7 +28,7 @@
             <split id="LineItemSplitter" parallelProcessing="true" timeout="0">
                 <xpath>/order/item</xpath>
                 <setHeader headerName="LineItemId" id="SetLineItemFileName">
-                    <xpath>/item/@id</xpath>
+                    <xpath resultType="java.lang.String">/item/@id</xpath>
                 </setHeader>
                 <to id="LineItemOutbox"
                     uri="file:target/data/outbox?fileName=${in.header.LineItemId}-${date:now:yyyyMMddHHmmssSSSSS}.xml"/>
